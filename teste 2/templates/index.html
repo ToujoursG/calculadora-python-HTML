@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        let guardar = "";
+        let aparece = "";
+        function pornumero(numeroprapor){
+            guardar += numeroprapor
+            if (guardar.length < 10) {
+                aparece += numeroprapor;
+                if(aparece.length === 9) {
+                    aparece = aparece + '...'
+                }
+            document.querySelector('.calculadora').innerText = aparece
+        }
+    }
+        function enviar(){
+            document.getElementById('campooculto').value = guardar
+            document.getElementById('form-da-calculadora').submit()
+        }
+    </script>
+</head>
+<body>
+    <div class="tudo">
+        <div class="calculadora">{{resultado}}</div>
+        <form id="form-da-calculadora" action="/calcula" method="post">
+            <input type="button" value="7" class="botao" onclick="pornumero('7')">
+            <input type="button" value="8" class="botao" onclick="pornumero('8')">
+            <input type="button" value="9" class="botao" onclick="pornumero('9')">
+            <input type="button" value="/" class="sinal" onclick="pornumero('/')">
+            <input type="button" value="4" class="botao" onclick="pornumero('4')">
+            <input type="button" value="5" class="botao" onclick="pornumero('5')">
+            <input type="button" value="6" class="botao" onclick="pornumero('6')">
+            <input type="button" value="*" class="sinal" onclick="pornumero('*')">
+            <input type="button" value="1" class="botao" onclick="pornumero('1')">
+            <input type="button" value="2" class="botao" onclick="pornumero('2')">
+            <input type="button" value="3" class="botao" onclick="pornumero('3')">
+            <input type="button" value="-" class="sinal" onclick="pornumero('-')">
+            <input type="button" value="0" class="botao" onclick="pornumero('0')">
+            <input type="button" value="." class="botao" onclick="pornumero('.')">
+            <input type="button" value="=" class="enviar" onclick="enviar()">
+            <input type="button" value="+" class="sinal" onclick="pornumero('+')">
+            <input type="hidden" name="campooculto" id="campooculto" value="">
+        </form>
+    </div>
+</body>
+</html>
